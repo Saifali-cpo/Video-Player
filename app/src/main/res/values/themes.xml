@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- ثيم شاشة البداية (Splash) -->
+    <style name="Theme.MyVideoPlayer.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/bg_base</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_logo</item>
+        <item name="windowSplashScreenIconBackgroundColor">@color/bg_base</item>
+        <item name="postSplashScreenTheme">@style/Theme.MyVideoPlayer</item>
+    </style>
+
     <style name="Theme.MyVideoPlayer" parent="Theme.Material3.Dark.NoActionBar">
-        <item name="android:statusBarColor">@color/background_dark</item>
-        <item name="android:navigationBarColor">@color/background_dark</item>
-        <item name="android:windowBackground">@color/background_dark</item>
-        <item name="colorPrimary">@color/accent</item>
+        <item name="android:statusBarColor">@color/bg_base</item>
+        <item name="android:navigationBarColor">@color/bg_base</item>
+        <item name="android:windowBackground">@color/bg_base</item>
+        <item name="colorPrimary">@color/brand_primary</item>
+        <item name="colorSecondary">@color/brand_accent</item>
+        <item name="colorSurface">@color/surface_card</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
     </style>
 
     <style name="Theme.MyVideoPlayer.Player" parent="Theme.MyVideoPlayer">
@@ -13,6 +25,24 @@
         <item name="android:navigationBarColor">@color/black</item>
         <item name="android:windowBackground">@color/black</item>
         <item name="android:windowFullscreen">false</item>
+    </style>
+
+    <!-- شكل البطاقات بحواف دائرية موحدة -->
+    <style name="ShapeAppearance.MyVideoPlayer.Card" parent="ShapeAppearance.Material3.Corner.Large">
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <!-- نمط شريحة الفرز -->
+    <style name="SortChipStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">36dp</item>
+        <item name="android:paddingHorizontal">18dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:background">@drawable/bg_chip_unselected</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
     </style>
 
 </resources>

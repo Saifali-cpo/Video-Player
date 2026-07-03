@@ -1,11 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- الخلفيات -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="background_dark">#FF121212</color>
-    <color name="surface_dark">#FF1E1E1E</color>
-    <color name="accent">#FF3B82F6</color>
-    <color name="text_secondary">#FFA0A0A0</color>
-    <color name="overlay_scrim">#CC000000</color>
+    <color name="bg_base">#FF08080D</color>
+    <color name="bg_elevated">#FF121218</color>
+    <color name="surface_card">#FF1A1A24</color>
+    <color name="surface_card_hi">#FF22222E</color>
+
+    <!-- ألوان العلامة (تدرج بنفسجي - سماوي فخم) -->
+    <color name="brand_primary">#FF7C5CFC</color>
+    <color name="brand_primary_dark">#FF5B3DE0</color>
+    <color name="brand_accent">#FF22D3EE</color>
+    <color name="brand_gold">#FFF5C451</color>
+
+    <!-- نصوص -->
+    <color name="text_primary">#FFF5F5FA</color>
+    <color name="text_secondary">#FFA5A5B8</color>
+    <color name="text_tertiary">#FF6E6E82</color>
+
+    <!-- عناصر تفاعلية -->
+    <color name="overlay_scrim">#D9000000</color>
     <color name="control_bar_bg">#B3000000</color>
+    <color name="divider">#1FFFFFFF</color>
+    <color name="chip_bg">#FF1E1E29</color>
+    <color name="chip_bg_selected">#FF7C5CFC</color>
+    <color name="error_red">#FFFF5470</color>
 </resources>

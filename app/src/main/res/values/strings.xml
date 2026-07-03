@@ -15,4 +15,12 @@
     <string name="speed">السرعة</string>
     <string name="lock">قفل</string>
     <string name="unlock">فتح القفل</string>
+    <string name="search_hint">ابحث عن فيديو…</string>
+    <string name="sort_recent">الأحدث</string>
+    <string name="sort_name">الاسم</string>
+    <string name="sort_size">الحجم</string>
+    <string name="sort_duration">المدة</string>
+    <string name="videos_count">%1$d فيديو</string>
+    <string name="no_search_results">لا توجد نتائج مطابقة</string>
+    <string name="welcome_title">مكتبتك</string>
 </resources>

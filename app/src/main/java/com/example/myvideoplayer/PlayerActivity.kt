@@ -119,9 +119,13 @@ class PlayerActivity : AppCompatActivity() {
 
         exoPlayer.addListener(object : Player.Listener {
             override fun onIsPlayingChanged(isPlaying: Boolean) {
-                binding.playPauseButton.setImageResource(
-                    if (isPlaying) R.drawable.ic_pause else R.drawable.ic_play
+                val icon = if (isPlaying) R.drawable.ic_pause else R.drawable.ic_play
+                binding.playPauseButton.setImageResource(icon)
+                binding.centerPlayButton.setImageResource(
+                    if (isPlaying) R.drawable.ic_pause else R.drawable.ic_play_hero
                 )
+                binding.centerPlayButton.visibility = if (isPlaying) View.GONE else View.VISIBLE
+                if (!isPlaying) mainHandler.removeCallbacks(hideControlsRunnable)
             }
 
             override fun onPlaybackStateChanged(playbackState: Int) {
@@ -156,6 +160,7 @@ class PlayerActivity : AppCompatActivity() {
     private fun updateTitle() {
         if (currentIndex in videos.indices) {
             binding.videoTitleText.text = videos[currentIndex].title
+            binding.playlistPositionText.text = "${currentIndex + 1} / ${videos.size}"
         }
     }
 
@@ -166,6 +171,11 @@ class PlayerActivity : AppCompatActivity() {
         binding.backButton.setOnClickListener { finish() }
 
         binding.playPauseButton.setOnClickListener {
+            togglePlayPause()
+            scheduleHideControls()
+        }
+
+        binding.centerPlayButton.setOnClickListener {
             togglePlayPause()
             scheduleHideControls()
         }
@@ -351,15 +361,30 @@ class PlayerActivity : AppCompatActivity() {
 
     private fun showControls() {
         isControlsVisible = true
-        binding.topBar.visibility = View.VISIBLE
-        binding.bottomBar.visibility = View.VISIBLE
+        fadeIn(binding.topBar)
+        fadeIn(binding.bottomBar)
+        if (player?.isPlaying != true) binding.centerPlayButton.visibility = View.VISIBLE
         scheduleHideControls()
     }
 
     private fun hideControls() {
         isControlsVisible = false
-        binding.topBar.visibility = View.GONE
-        binding.bottomBar.visibility = View.GONE
+        fadeOut(binding.topBar)
+        fadeOut(binding.bottomBar)
+        if (player?.isPlaying == true) binding.centerPlayButton.visibility = View.GONE
+    }
+
+    private fun fadeIn(view: View) {
+        if (view.visibility == View.VISIBLE && view.alpha == 1f) return
+        view.alpha = 0f
+        view.visibility = View.VISIBLE
+        view.animate().alpha(1f).setDuration(200).start()
+    }
+
+    private fun fadeOut(view: View) {
+        view.animate().alpha(0f).setDuration(200)
+            .withEndAction { view.visibility = View.GONE }
+            .start()
     }
 
     private fun scheduleHideControls() {

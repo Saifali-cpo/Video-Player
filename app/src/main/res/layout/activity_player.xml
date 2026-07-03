@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black">
@@ -14,13 +16,13 @@
         app:resize_mode="fit"
         app:surface_type="surface_view" />
 
-    <!-- طبقة اللمس والإيماءات (تقديم/ترجيع بالدبل تاب، سحب للصوت/السطوع) -->
+    <!-- طبقة اللمس والإيماءات -->
     <FrameLayout
         android:id="@+id/gestureOverlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <!-- مؤشر السطوع/الصوت/التقديم عند السحب أو الدبل تاب -->
+    <!-- مؤشر السطوع/الصوت/التقديم -->
     <LinearLayout
         android:id="@+id/gestureIndicatorContainer"
         android:layout_width="wrap_content"
@@ -29,9 +31,10 @@
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:background="@drawable/bg_rounded_dark"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="10dp"
-        android:visibility="gone">
+        android:paddingHorizontal="18dp"
+        android:paddingVertical="12dp"
+        android:visibility="gone"
+        android:elevation="4dp">
 
         <ImageView
             android:id="@+id/gestureIndicatorIcon"
@@ -43,13 +46,24 @@
             android:id="@+id/gestureIndicatorText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="10dp"
             android:textColor="@color/white"
             android:textSize="15sp"
-            tools:text="70%"
-            xmlns:tools="http://schemas.android.com/tools" />
+            android:fontFamily="sans-serif-medium"
+            tools:text="70%" />
 
     </LinearLayout>
+
+    <!-- زر تشغيل مركزي كبير (يظهر مع الأشرطة) -->
+    <ImageView
+        android:id="@+id/centerPlayButton"
+        android:layout_width="76dp"
+        android:layout_height="76dp"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_play_button_gradient"
+        android:src="@drawable/ic_play_hero"
+        android:padding="22dp"
+        android:elevation="6dp" />
 
     <!-- مؤشر التحميل -->
     <ProgressBar
@@ -57,82 +71,106 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:indeterminateTint="@color/brand_accent"
         android:visibility="gone" />
 
-    <!-- الشريط العلوي: رجوع + عنوان الفيديو + قفل -->
+    <!-- الشريط العلوي -->
     <LinearLayout
         android:id="@+id/topBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="top"
         android:background="@drawable/bg_gradient_top"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:paddingHorizontal="8dp"
-        android:paddingVertical="12dp">
+        android:orientation="vertical"
+        android:paddingBottom="4dp">
 
-        <ImageButton
-            android:id="@+id/backButton"
-            android:layout_width="44dp"
-            android:layout_height="44dp"
-            android:background="@drawable/ripple_circle"
-            android:src="@drawable/ic_back"
-            android:contentDescription="@string/back" />
-
-        <TextView
-            android:id="@+id/videoTitleText"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginStart="8dp"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:maxLines="1"
-            android:ellipsize="end"
-            tools:text="اسم الفيديو"
-            xmlns:tools="http://schemas.android.com/tools" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="10dp">
 
-        <ImageButton
-            android:id="@+id/speedButton"
-            android:layout_width="44dp"
-            android:layout_height="44dp"
-            android:background="@drawable/ripple_circle"
-            android:src="@drawable/ic_speed"
-            android:contentDescription="@string/speed" />
+            <ImageButton
+                android:id="@+id/backButton"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:background="@drawable/ripple_circle"
+                android:src="@drawable/ic_back"
+                android:contentDescription="@string/back" />
 
-        <ImageButton
-            android:id="@+id/lockButton"
-            android:layout_width="44dp"
-            android:layout_height="44dp"
-            android:background="@drawable/ripple_circle"
-            android:src="@drawable/ic_unlock"
-            android:contentDescription="@string/lock" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/videoTitleText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    tools:text="اسم الفيديو" />
+
+                <TextView
+                    android:id="@+id/playlistPositionText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="11sp"
+                    tools:text="2 / 15" />
+
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/speedButton"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:background="@drawable/ripple_circle"
+                android:src="@drawable/ic_speed"
+                android:contentDescription="@string/speed" />
+
+            <ImageButton
+                android:id="@+id/lockButton"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:background="@drawable/ripple_circle"
+                android:src="@drawable/ic_unlock"
+                android:contentDescription="@string/lock" />
+
+        </LinearLayout>
     </LinearLayout>
 
-    <!-- زر فتح القفل يظهر فقط عندما تكون الشاشة مقفلة -->
+    <!-- زر فتح القفل عند القفل -->
     <ImageButton
         android:id="@+id/unlockOnlyButton"
         android:layout_width="52dp"
         android:layout_height="52dp"
         android:layout_gravity="bottom|start"
         android:layout_margin="20dp"
-        android:background="@drawable/bg_rounded_dark"
+        android:background="@drawable/bg_circle_glass"
         android:src="@drawable/ic_lock"
         android:visibility="gone"
         android:contentDescription="@string/unlock" />
 
-    <!-- الشريط السفلي: شريط التقديم + أزرار التحكم -->
+    <!-- الشريط السفلي -->
     <LinearLayout
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="@drawable/bg_gradient_bottom"
+        android:background="@drawable/bg_bottom_panel_rounded"
         android:orientation="vertical"
-        android:paddingHorizontal="12dp"
-        android:paddingTop="20dp"
-        android:paddingBottom="10dp">
+        android:paddingHorizontal="16dp"
+        android:paddingTop="18dp"
+        android:paddingBottom="14dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -146,26 +184,26 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:textSize="12sp"
-                tools:text="00:00"
-                xmlns:tools="http://schemas.android.com/tools" />
+                android:fontFamily="sans-serif-medium"
+                tools:text="00:00" />
 
             <SeekBar
                 android:id="@+id/seekBar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginHorizontal="8dp"
-                android:progressTint="@color/accent"
-                android:thumbTint="@color/accent" />
+                android:layout_marginHorizontal="10dp"
+                android:progressTint="@color/brand_accent"
+                android:progressBackgroundTint="@color/divider"
+                android:thumbTint="@color/brand_accent" />
 
             <TextView
                 android:id="@+id/totalTimeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
+                android:textColor="@color/text_secondary"
                 android:textSize="12sp"
-                tools:text="00:00"
-                xmlns:tools="http://schemas.android.com/tools" />
+                tools:text="00:00" />
 
         </LinearLayout>
 
@@ -174,47 +212,48 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center"
-            android:paddingTop="6dp">
+            android:paddingTop="10dp">
 
             <ImageButton
                 android:id="@+id/previousButton"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
                 android:background="@drawable/ripple_circle"
                 android:src="@drawable/ic_previous"
                 android:contentDescription="@string/previous" />
 
             <ImageButton
                 android:id="@+id/rewindButton"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="16dp"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:layout_marginStart="18dp"
                 android:background="@drawable/ripple_circle"
                 android:src="@drawable/ic_rewind10"
                 android:contentDescription="@string/rewind" />
 
             <ImageButton
                 android:id="@+id/playPauseButton"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:layout_marginHorizontal="20dp"
-                android:background="@drawable/ripple_circle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="22dp"
+                android:background="@drawable/bg_play_button_gradient"
                 android:src="@drawable/ic_pause"
+                android:padding="16dp"
                 android:contentDescription="@string/play" />
 
             <ImageButton
                 android:id="@+id/forwardButton"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
                 android:background="@drawable/ripple_circle"
                 android:src="@drawable/ic_forward10"
                 android:contentDescription="@string/forward" />
 
             <ImageButton
                 android:id="@+id/nextButton"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="16dp"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:layout_marginStart="18dp"
                 android:background="@drawable/ripple_circle"
                 android:src="@drawable/ic_next"
                 android:contentDescription="@string/next" />
