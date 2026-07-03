@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">مشغل الفيديو</string>
+    <string name="permission_needed">التطبيق يحتاج صلاحية للوصول إلى الفيديوهات</string>
+    <string name="grant_permission">منح الصلاحية</string>
+    <string name="no_videos_found">لا توجد فيديوهات على الجهاز</string>
+    <string name="loading">جاري التحميل...</string>
+    <string name="play">تشغيل</string>
+    <string name="pause">إيقاف مؤقت</string>
+    <string name="next">التالي</string>
+    <string name="previous">السابق</string>
+    <string name="rewind">ترجيع 10 ثواني</string>
+    <string name="forward">تقديم 10 ثواني</string>
+    <string name="back">رجوع</string>
+    <string name="speed">السرعة</string>
+    <string name="lock">قفل</string>
+    <string name="unlock">فتح القفل</string>
+</resources>
